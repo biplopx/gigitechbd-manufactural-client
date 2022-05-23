@@ -1,13 +1,40 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase';
+import Loading from './Loading';
 
 const Navbar = () => {
+  const [user, loading] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  }
   const menuItems = <>
     <li><Link to="/home">Home</Link></li>
     <li><Link to="/blogs">Blogs</Link></li>
-    <li><Link to="/login">Login</Link></li>
-    <li><Link to="/register">Register</Link></li>
+    <li><Link to="/blogs">My Portfolio</Link></li>
+    {
+      user ?
+        <></>
+        :
+        <>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/register">Register</Link></li>
+        </>
+    }
+    {
+      user && <>
+
+      </>
+    }
   </>
+
+  if (loading) {
+    return <Loading></Loading>
+  }
+
+
   return (
     <header className='bg-primary'>
       <div className="container mx-auto">
@@ -29,7 +56,16 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <button className="btn bg-white text-black hover:text-white border-0">Hello</button>
+            {
+              user ? <>
+                <button onClick={logout} className="btn btn-active btn-ghost">Sign Out</button>
+              </>
+                :
+                <>
+                  <button className="btn bg-slate-300 text-black hover:text-white border-0">Hello</button>
+                </>
+            }
+
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const url = `http://localhost:5000/product/${id}`
   const { data: product, isLoading } = useQuery('product', () => fetch(url)
     .then(res => res.json()));
-  const { _id, name, img, description, minQuantity, availableQuantity, price } = product;
+  // const { _id, name, img, description, minQuantity, availableQuantity, price } = data.product;
   if (isLoading) {
     return <Loading></Loading>
   }
