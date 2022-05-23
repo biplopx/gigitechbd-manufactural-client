@@ -29,7 +29,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <button className="btn bg-white text-black hover:text-white">Hello</button>
+            <button className="btn bg-white text-black hover:text-white border-0">Hello</button>
           </div>
         </div>
       </div>
