@@ -17,7 +17,7 @@ const ProductDetails = () => {
     <>
       <PageTitle title="Product Details"></PageTitle>
       <section className='flex py-12 p-5'>
-
+        <h2 className="text-xl">Product: {product.name}</h2>
       </section>
     </>
   );

@@ -4,7 +4,7 @@ import PageTitle from '../../Shared/PageTitle';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase';
 import Loading from '../../Shared/Loading';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Register = () => {
@@ -16,7 +16,7 @@ const Register = () => {
     user,
     loading,
     error,
-  ] = useCreateUserWithEmailAndPassword(auth);
+  ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile] = useUpdateProfile(auth);
 
@@ -24,7 +24,7 @@ const Register = () => {
   // if user exits then
   useEffect(() => {
     if (user || gUser) {
-      toast.success('Registration Successful')
+      toast.success('Registration Successful (Please verify your email)')
       navigate('/')
     }
   }, [user, navigate, gUser])
@@ -119,6 +119,7 @@ const Register = () => {
               <div>{signupError}</div>
               <input className='btn btn-primary w-full text-white' type="submit" value="Register" />
             </form>
+            <p className='mt-4'>Already have an account <Link className='text-primary' to="/login">Login here</Link></p>
             <div className="divider">OR</div>
             <button
               onClick={() => signInWithGoogle()}

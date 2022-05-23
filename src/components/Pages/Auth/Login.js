@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase';
 import Loading from '../../Shared/Loading';
@@ -10,6 +10,7 @@ import PageTitle from '../../Shared/PageTitle';
 const Login = () => {
   let signinError;
   const navigate = useNavigate();
+  const location = useLocation();
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [
     signInWithEmailAndPassword,
@@ -18,14 +19,15 @@ const Login = () => {
     error,
   ] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  let from = location.state?.from?.pathname || "/";
 
   // if user exits then
   useEffect(() => {
     if (user || gUser) {
       toast.success('Login Successful')
-      navigate('/')
+      navigate(from, { replace: true });
     }
-  }, [user, navigate, gUser])
+  }, [user, navigate, gUser, from])
 
 
   // loading state
@@ -76,7 +78,7 @@ const Login = () => {
                 <label className="label font-semibold">
                   <span className="label-text">Password</span>
                 </label>
-                <input type="text"
+                <input type="password"
                   {...register("password", {
                     required: {
                       value: true,
@@ -96,6 +98,8 @@ const Login = () => {
               <div>{signinError}</div>
               <input className='btn btn-primary w-full text-white' type="submit" value="Login" />
             </form>
+            <p className='mt-4'><Link className='text-primary' to="/password-reset">Forgotten password?</Link></p>
+            <p className='mt-4'>New to GigitechBD <Link className='text-primary' to="/register">Create new account here</Link></p>
             <div className="divider">OR</div>
             <button
               onClick={() => signInWithGoogle()}
