@@ -2,7 +2,7 @@ import React from 'react';
 
 const BusinessSummary = () => {
   return (
-    <div className='px-5 py-12 bg-slate-100'>
+    <section className='px-5 py-12 bg-slate-100'>
       <h2 className='text-center text-3xl text-accent font-bold mb-8'>We Proudly Served</h2>
       <div className="flex justify-center">
         <div className="stats stats-vertical lg:stats-horizontal shadow">
@@ -48,7 +48,7 @@ const BusinessSummary = () => {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

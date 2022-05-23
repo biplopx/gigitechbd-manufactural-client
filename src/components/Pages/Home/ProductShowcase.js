@@ -2,8 +2,8 @@ import React from 'react';
 
 const ProductShowcase = () => {
   return (
-    <div className='p-10'>
-      <h2 className='text-center text-accent text-3xl font-bold mb-10'>Product Showcase</h2>
+    <section className='p-10 px-5'>
+      <h2 className='text-center text-3xl text-accent font-bold mb-8'>Product Showcase</h2>
       <div className="container mx-auto">
         <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7'>
           <div className="card  bg-base-100 border-2 shadow-none">
@@ -50,7 +50,7 @@ const ProductShowcase = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

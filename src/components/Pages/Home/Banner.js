@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = () => {
   return (
-    <div className="hero h-screen bg-[url('https://i.postimg.cc/3RkccpSp/banner-gigitech.jpg')]">
+    <section className="hero h-screen bg-[url('https://i.postimg.cc/3RkccpSp/banner-gigitech.jpg')]">
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-white">
         <div className="max-w-80">
@@ -11,7 +11,7 @@ const Banner = () => {
           <button className="btn btn-primary">Order Now</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
