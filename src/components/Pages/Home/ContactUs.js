@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactUs = () => {
   return (
-    <section className='py-12 px-5 bg-[url(https://i.postimg.cc/HLjJtBY4/map.jpg)]'>
+    <section id='contact' className='py-12 px-5 bg-[url(https://i.postimg.cc/HLjJtBY4/map.jpg)]'>
       <h2 className='text-center text-3xl text-accent font-bold mb-8'>Contact Us</h2>
       <div className="container mx-auto">
         <div className='flex flex-col lg:flex-row md:flex-col justify-evenly gap-5'>
