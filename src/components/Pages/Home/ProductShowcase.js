@@ -1,53 +1,22 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import Product from '../../Products/Product';
+import Loading from '../../Shared/Loading';
 
 const ProductShowcase = () => {
+  const { data: products, isLoading } = useQuery('products', () => fetch('http://localhost:5000/products')
+    .then(res => res.json()))
+  if (isLoading) {
+    return <Loading></Loading>
+  }
   return (
     <section className='p-10 px-5'>
-      <h2 className='text-center text-3xl text-accent font-bold mb-8'>Product Showcase</h2>
+      <h2 className='text-center text-3xl text-accent font-bold mb-8'>Our Products</h2>
       <div className="container mx-auto">
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7'>
-          <div className="card  bg-base-100 border-2 shadow-none">
-            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-            <div className="card-body">
-              <h2 className="card-title text-2xl mb-3">Shoes!</h2>
-              <hr className='mb-3' />
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti consequuntur laudantium eos animi aut aliquid voluptatem velit minima, tempore deleniti laboriosam nam dignissimos harum et beatae voluptatum, eveniet obcaecati id.</p>
-              <p><strong>Minimum Order Quantity:</strong> 100</p>
-              <p><strong>Available Quantity:</strong> 100</p>
-              <p><strong>Price:</strong> $99 (per unit)</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Order Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card  bg-base-100 border-2 shadow-none">
-            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-            <div className="card-body">
-              <h2 className="card-title text-2xl mb-3">Shoes!</h2>
-              <hr className='mb-3' />
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti consequuntur laudantium eos animi aut aliquid voluptatem velit minima, tempore deleniti laboriosam nam dignissimos harum et beatae voluptatum, eveniet obcaecati id.</p>
-              <p><strong>Minimum Order Quantity:</strong> 100</p>
-              <p><strong>Available Quantity:</strong> 100</p>
-              <p><strong>Price:</strong> $99 (per unit)</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Order Now</button>
-              </div>
-            </div>
-          </div>
-          <div className="card  bg-base-100 border-2 shadow-none">
-            <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-            <div className="card-body">
-              <h2 className="card-title text-2xl mb-3">Shoes!</h2>
-              <hr className='mb-3' />
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti consequuntur laudantium eos animi aut aliquid voluptatem velit minima, tempore deleniti laboriosam nam dignissimos harum et beatae voluptatum, eveniet obcaecati id.</p>
-              <p><strong>Minimum Order Quantity:</strong> 100</p>
-              <p><strong>Available Quantity:</strong> 100</p>
-              <p><strong>Price:</strong> $99 (per unit)</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Order Now</button>
-              </div>
-            </div>
-          </div>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 lg:gap-7'>
+          {
+            products.map(product => <Product key={product._id} product={product}></Product>)
+          }
         </div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import Register from "./components/Pages/Auth/Register";
 import Blogs from "./components/Pages/Blogs/Blogs";
 import Home from "./components/Pages/Home/Home";
 import NotFound from "./components/Pages/NotFound/NotFound";
+import ProductDetails from "./components/Products/ProductDetails";
 import Footer from "./components/Shared/Footer";
 import Navbar from "./components/Shared/Navbar";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/product/:id" element={<ProductDetails></ProductDetails>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
