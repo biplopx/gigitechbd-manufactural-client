@@ -57,7 +57,7 @@ const Register = () => {
               {/* Ful name Input */}
               <div className="form-control w-full">
                 <label className="label font-semibold">
-                  <span className="label-text">Full name</span>
+                  <span className="label-text">Name</span>
                 </label>
                 <input
                   type="text"
