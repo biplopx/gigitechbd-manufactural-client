@@ -28,7 +28,6 @@ const ProductDetails = () => {
   const onSubmit = data => {
     // console.log(data)
     const order = {
-      productId: product._id,
       productName: product.name,
       name: user.displayName,
       email: user.email,
