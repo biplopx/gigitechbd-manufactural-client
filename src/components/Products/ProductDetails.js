@@ -1,7 +1,7 @@
 import { AuthErrorCodes } from 'firebase/auth';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase';
@@ -16,8 +16,9 @@ const ProductDetails = () => {
 
   const [user, loading] = useAuthState(auth);
 
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const { register, watch, getValues, formState: { errors }, handleSubmit } = useForm();
   // const { isDirty } = useFormState();
+  const watchShowQuantity = watch("quantity", product?.minQuantity);
 
 
   if (isLoading || loading) {
@@ -25,12 +26,14 @@ const ProductDetails = () => {
   }
 
   const onSubmit = data => {
-
+    console.log(data)
     const order = {
       name: user.displayName,
       email: user.email,
+      address: data.address,
+      phone: data.phone,
       quantity: parseInt(data.quantity),
-
+      price: parseInt(product.price * watchShowQuantity),
     }
     console.log(order)
   }
@@ -132,7 +135,7 @@ const ProductDetails = () => {
                     {...register("quantity",
                       // { min: product.minQuantity, max: product.availableQuantity },
                       {
-                        // onChange: (e) => {console.log(e)},
+                        // onChange: (e) => { console.log(e) },
                         min: {
                           value: product.minQuantity,
                           message: `You have to purchase at least ${product.minQuantity} products`
@@ -151,10 +154,13 @@ const ProductDetails = () => {
                     {errors.quantity?.type === 'required' && <span className="label-text-alt text-red-500">{errors.quantity.message}</span>}
                     {errors.quantity?.type === 'min' && <span className="label-text-alt text-red-500">{errors.quantity.message}</span>}
                     {errors.quantity?.type === 'max' && <span className="label-text-alt text-red-500">{errors.quantity.message}</span>}
-
                   </label>
                 </div>
-                <input className='btn btn-primary w-full text-white' type="submit" value="Purchase Now" />
+                <div className="form-control w-full mb-4">
+                  <h2 className="xl font-bold">Total Price: $ <span>{(product?.price) * (getValues('quantity') ? getValues('quantity') : product?.minQuantity)}</span></h2>
+
+                </div>
+                <input className='btn btn-primary w-full text-white' type="submit" value="Purchase Now" disabled={watchShowQuantity < product.minQuantity || watchShowQuantity > product.availableQuantity} />
               </form>
             </div>
           </div>

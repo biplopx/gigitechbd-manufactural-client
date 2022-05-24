@@ -6,6 +6,7 @@ import auth from '../../../firebase';
 import Loading from '../../Shared/Loading';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
   let signupError;
@@ -16,18 +17,21 @@ const Register = () => {
     user,
     loading,
     error,
-  ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+  ] = useCreateUserWithEmailAndPassword(auth);
+  // , { sendEmailVerification: true 
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [updateProfile] = useUpdateProfile(auth);
 
+  const [token] = useToken(user || gUser);
 
-  // if user exits then
+
+  // if user exits and get token
   useEffect(() => {
-    if (user || gUser) {
-      toast.success('Registration Successful (Please verify your email)')
-      navigate('/')
+    if (token) {
+      navigate('/');
     }
-  }, [user, navigate, gUser])
+  }, [navigate, token])
+
 
 
   // loading state
