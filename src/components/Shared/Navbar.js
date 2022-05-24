@@ -9,6 +9,7 @@ const Navbar = () => {
   const [user, loading] = useAuthState(auth);
   const logout = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken');
   }
   const menuItems = <>
     <li><Link to="/home">Home</Link></li>
@@ -59,7 +60,7 @@ const Navbar = () => {
             {
               user ? <>
                 <div className='bg-white text-black p-3 mr-2 rounded-md'><small>Logged: {user?.displayName}</small></div>
-                <button onClick={logout} className="btn btn-active btn-ghost">Sign Out</button>
+                <button onClick={logout} className="btn btn-active btn-ghost">Log Out</button>
               </>
                 :
                 <>

@@ -6,7 +6,12 @@ import PasswordReset from "./components/Pages/Auth/PasswordReset";
 import Register from "./components/Pages/Auth/Register";
 import RequireAuth from "./components/Pages/Auth/RequireAuth";
 import Blogs from "./components/Pages/Blogs/Blogs";
+import AddReview from "./components/Pages/Dashboard/AddReview";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
+import MyOrders from "./components/Pages/Dashboard/MyOrders";
+import MyOrder from "./components/Pages/Dashboard/MyOrders";
+import MyProfile from "./components/Pages/Dashboard/MyProfile";
+import Users from "./components/Pages/Dashboard/Users";
 import Home from "./components/Pages/Home/Home";
 import NotFound from "./components/Pages/NotFound/NotFound";
 import ProductDetails from "./components/Products/ProductDetails";
@@ -30,11 +35,18 @@ function App() {
           </RequireAuth>
 
         }></Route>
+
         <Route path="/dashboard" element={
           <RequireAuth>
             <Dashboard></Dashboard>
           </RequireAuth>
-        }></Route>
+        }>
+          <Route index element={<MyOrder></MyOrder>}></Route>
+          <Route path="add-review" element={<AddReview></AddReview>}></Route>
+          <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="all-users" element={<Users></Users>}></Route>
+        </Route>
 
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>

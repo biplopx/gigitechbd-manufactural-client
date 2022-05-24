@@ -15,7 +15,7 @@ const BusinessSummary = () => {
               </div>
               4,200
             </div>
-            <div className="stat-desc text-secondary">↗︎ 40 (2%)</div>
+            <div className="stat-desc text-[secondary]">↗︎ 40 (2%)</div>
           </div>
 
           <div className="stat place-items-center">

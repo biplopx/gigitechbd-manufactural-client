@@ -28,6 +28,7 @@ const Register = () => {
   // if user exits and get token
   useEffect(() => {
     if (token) {
+      toast('Registration successful')
       navigate('/');
     }
   }, [navigate, token])

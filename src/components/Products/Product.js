@@ -16,7 +16,7 @@ const Product = ({ product }) => {
         <p><strong>Available Quantity:</strong> {availableQuantity}</p>
         <p><strong>Price:</strong> {price} (per unit)</p>
         <div className="card-actions justify-end">
-          <button onClick={() => navigate(`/product/${_id}`)} className="btn btn-primary">Order Now</button>
+          <button onClick={() => navigate(`/product/${_id}`)} className="btn btn-primary text-white">Order Now</button>
         </div>
       </div>
     </div>

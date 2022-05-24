@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase';
 import Loading from '../Shared/Loading';
 import PageTitle from '../Shared/PageTitle';
@@ -15,7 +16,7 @@ const ProductDetails = () => {
 
   const [user, loading] = useAuthState(auth);
 
-  const { register, watch, getValues, formState: { errors }, handleSubmit } = useForm();
+  const { register, watch, getValues, formState: { errors }, handleSubmit, reset } = useForm();
   // const { isDirty } = useFormState();
   const watchShowQuantity = watch("quantity", product?.minQuantity);
 
@@ -25,16 +26,32 @@ const ProductDetails = () => {
   }
 
   const onSubmit = data => {
-    console.log(data)
+    // console.log(data)
     const order = {
+      productId: product._id,
+      productName: product.name,
       name: user.displayName,
       email: user.email,
       address: data.address,
       phone: data.phone,
       quantity: parseInt(data.quantity),
-      price: parseInt(product.price * watchShowQuantity),
+      price: parseInt(product.price * data.quantity),
     }
     console.log(order)
+    fetch('http://localhost:5000/order', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(order)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result)
+        toast.success('Order Successful')
+        reset()
+      })
+
   }
 
   return (

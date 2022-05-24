@@ -8,7 +8,7 @@ const Banner = () => {
         <div className="max-w-80">
           <h1 className="mb-5 lg:text-5xl text-4xl font-bold">Gigitech BD - Quality motherboard building company</h1>
           <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-          <button className="btn btn-primary">Order Now</button>
+          <button id='/#contact' className="btn btn-primary text-white">Contact US</button>
         </div>
       </div>
     </section>
