@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../firebase';
+import useToken from '../../../hooks/useToken';
 import Loading from '../../Shared/Loading';
 import PageTitle from '../../Shared/PageTitle';
 
@@ -21,13 +22,15 @@ const Login = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   let from = location.state?.from?.pathname || "/";
 
+  const [token] = useToken(user || gUser)
+
   // if user exits then
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       toast.success('Login Successful')
       navigate(from, { replace: true });
     }
-  }, [user, navigate, gUser, from])
+  }, [token, navigate, from])
 
 
   // loading state
