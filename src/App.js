@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from "./components/Pages/Auth/Login";
 import PasswordReset from "./components/Pages/Auth/PasswordReset";
 import Register from "./components/Pages/Auth/Register";
+import RequireAdmin from "./components/Pages/Auth/RequireAdmin";
 import RequireAuth from "./components/Pages/Auth/RequireAuth";
 import Blogs from "./components/Pages/Blogs/Blogs";
 import AddReview from "./components/Pages/Dashboard/AddReview";
@@ -45,7 +46,7 @@ function App() {
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
           <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
-          <Route path="all-users" element={<Users></Users>}></Route>
+          <Route path="all-users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
         </Route>
 
         <Route path="*" element={<NotFound></NotFound>}></Route>

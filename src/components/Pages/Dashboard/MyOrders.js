@@ -25,7 +25,7 @@ const MyOrders = () => {
       <div>
         <h2 className="text-md font-bold text-accent mb-3">My Order</h2>
         <div className="overflow-x-auto">
-          <table className="table w-full">
+          <table className="table table-normal w-full">
             <thead>
               <tr>
                 <th>No</th>
