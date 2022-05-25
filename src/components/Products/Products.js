@@ -1,22 +1,21 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import Product from '../../Products/Product';
-import Loading from '../../Shared/Loading';
+import Loading from '../Shared/Loading';
+import Product from './Product';
 
-const ProductShowcase = () => {
+const Products = () => {
   const { data: products, isLoading } = useQuery('products', () => fetch('http://localhost:5000/products')
     .then(res => res.json()))
-  const sixProducts = products.slice(0, 6);
   if (isLoading) {
     return <Loading></Loading>
   }
   return (
     <section className='p-10 px-5'>
-      <h2 className='text-center text-3xl text-accent font-bold mb-8'>Our Products</h2>
+      <h2 className='text-center text-3xl text-accent font-bold mb-8'>All Products</h2>
       <div className="container mx-auto">
         <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 lg:gap-7'>
           {
-            sixProducts.map(product => <Product key={product._id} product={product}></Product>)
+            products.map(product => <Product key={product._id} product={product}></Product>)
           }
         </div>
       </div>
@@ -24,4 +23,4 @@ const ProductShowcase = () => {
   );
 };
 
-export default ProductShowcase;
+export default Products;

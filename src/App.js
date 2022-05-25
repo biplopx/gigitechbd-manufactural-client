@@ -21,6 +21,8 @@ import ProductDetails from "./components/Products/ProductDetails";
 import Footer from "./components/Shared/Footer";
 import Navbar from "./components/Shared/Navbar";
 import ManageProducts from "./components/Pages/Dashboard/ManageProducts";
+import MyPortolio from "./components/Pages/MyPortfolio/MyPortolio";
+import Products from "./components/Products/Products";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/password-reset" element={<PasswordReset></PasswordReset>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/my-portfolio" element={<MyPortolio></MyPortolio>}></Route>
+        <Route path="/products" element={<Products></Products>}></Route>
         <Route path="/purchase/:id" element={
           <RequireAuth>
             <ProductDetails></ProductDetails>
