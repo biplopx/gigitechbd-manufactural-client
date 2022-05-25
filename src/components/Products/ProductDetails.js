@@ -16,7 +16,7 @@ const ProductDetails = () => {
 
   const [user, loading] = useAuthState(auth);
 
-  const { register, watch, getValues, formState: { errors }, handleSubmit, reset } = useForm();
+  const { register, watch, getValues, refetch, formState: { errors }, handleSubmit, reset } = useForm();
   // const { isDirty } = useFormState();
   const watchShowQuantity = watch("quantity", product?.minQuantity);
 
@@ -49,6 +49,19 @@ const ProductDetails = () => {
         console.log(result)
         toast.success('Order Successful')
         reset()
+      })
+
+    fetch(`http://localhost:5000/product/${product._id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(data.quantity)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        refetch();
       })
 
   }

@@ -22,6 +22,7 @@ const PasswordReset = () => {
     <section className='py-12 p-5 bg-sky-100'>
       <div className="flex h-screen justify-center items-start">
         <div className="w-96 bg-white border-2 rounded-md border-primary p-5">
+          <h2 className="text-lg text-center font-bold mb-3">Password Reset</h2>
           <div>
             <div className='border-2 rounded-md mb-3'>
               <input onChange={(e) => setEmail(e.target.value)}

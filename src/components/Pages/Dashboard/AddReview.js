@@ -21,7 +21,6 @@ const AddReview = () => {
       rating: data.rating,
       userEmail: user?.email
     }
-    console.log(review)
     fetch('http://localhost:5000/review/add', {
       method: 'POST',
       headers: {
@@ -32,7 +31,6 @@ const AddReview = () => {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result)
         toast.success('Your review successfully added')
         reset()
       })

@@ -3,11 +3,15 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../../firebase';
 import useAdmin from '../../../hooks/useAdmin';
+import Loading from '../../Shared/Loading';
 import PageTitle from '../../Shared/PageTitle';
 
 const Dashboard = () => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [admin] = useAdmin(user);
+  if (loading) {
+    return <Loading></Loading>
+  }
   return (
     <>
       <PageTitle title="Dashboard"></PageTitle>
