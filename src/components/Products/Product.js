@@ -5,7 +5,7 @@ const Product = ({ product }) => {
   const navigate = useNavigate();
   const { _id, name, img, description, minQuantity, availableQuantity, price } = product;
   return (
-    <div className="card  bg-base-100 border-2 shadow-none">
+    <div className="card bg-base-100 border-2 shadow-none">
       <figure className='p-8'><img src={img} className="w-3/4" alt="Shoes" /></figure>
       <div className="card-body p-8">
         <h2 className="card-title text-2xl mb-3">{name}</h2>

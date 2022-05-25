@@ -1,53 +1,23 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import Loading from '../../Shared/Loading';
+import Review from './Review';
 
 const Reviews = () => {
+  const { data: reviews, isLoading } = useQuery('reviews', () => fetch('http://localhost:5000/reviews')
+    .then(res => res.json()));
+
+  if (isLoading) {
+    return <Loading></Loading>
+  }
   return (
     <section className='py-10 px-5'>
-      <h2 className='text-center text-3xl text-accent font-bold mb-8'>We Proudly Served</h2>
+      <h2 className='text-center text-3xl text-accent font-bold mb-8'>Customer Reviews</h2>
       <div className="container mx-auto">
-        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-7'>
-          <div className="card  bg-base-100 rounded-md border-2">
-            <figure className="px-10 pt-10">
-              <div className="avatar">
-                <div className="w-24 rounded-full">
-                  <img src="https://api.lorem.space/image/face?hash=92310" alt='avater' />
-                </div>
-              </div>
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Johon Doe</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <p><strong>Rating:</strong> 5</p>
-            </div>
-          </div>
-          <div className="card  bg-base-100 rounded-md border-2">
-            <figure className="px-10 pt-10">
-              <div className="avatar">
-                <div className="w-24 rounded-full">
-                  <img src="https://api.lorem.space/image/face?hash=92310" alt='avater' />
-                </div>
-              </div>
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Johon Doe</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <p><strong>Rating:</strong> 5</p>
-            </div>
-          </div>
-          <div className="card bg-base-100 rounded-md border-2">
-            <figure className="px-10 pt-10">
-              <div className="avatar">
-                <div className="w-24 rounded-full">
-                  <img src="https://api.lorem.space/image/face?hash=92310" alt='avater' />
-                </div>
-              </div>
-            </figure>
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">Johon Doe</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <p><strong>Rating:</strong> 5</p>
-            </div>
-          </div>
+        <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5'>
+          {
+            reviews.map(review => <Review key={review._id} review={review}></Review>)
+          }
         </div>
       </div>
     </section>

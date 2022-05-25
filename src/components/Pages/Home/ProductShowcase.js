@@ -6,7 +6,7 @@ import Loading from '../../Shared/Loading';
 const ProductShowcase = () => {
   const { data: products, isLoading } = useQuery('products', () => fetch('http://localhost:5000/products')
     .then(res => res.json()))
-  const sixProducts = products.slice(0, 6);
+  const sixProducts = products?.slice(0, 6);
   if (isLoading) {
     return <Loading></Loading>
   }

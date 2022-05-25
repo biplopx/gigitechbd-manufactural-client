@@ -65,7 +65,7 @@ const AddProduct = () => {
               })}
               className="textarea textarea-bordered" rows="6"></textarea>
             <label className="label">
-              {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+              {errors.description?.type === 'required' && <span className="label-text-alt text-red-500">{errors.description.message}</span>}
             </label>
           </div>
           {/* Minimum Quantity */}
@@ -73,7 +73,7 @@ const AddProduct = () => {
             <label className="label font-semibold">
               <span className="label-text">Minimum Oder Quantity</span>
             </label>
-            <input type="number"
+            <input type="description"
               {...register("minQuantity", {
                 required: {
                   value: true,
@@ -82,7 +82,7 @@ const AddProduct = () => {
               })}
               className="input input-bordered w-full" />
             <label className="label">
-              {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+              {errors.minQuantity?.type === 'required' && <span className="label-text-alt text-red-500">{errors.minQuantity.message}</span>}
             </label>
           </div>
           {/* Availabe/Stock Quantity */}
@@ -99,7 +99,7 @@ const AddProduct = () => {
               })}
               className="input input-bordered w-full" />
             <label className="label">
-              {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+              {errors.number?.type === 'required' && <span className="label-text-alt text-red-500">{errors.number.message}</span>}
             </label>
           </div>
           {/* Prdoduct Prices */}
@@ -116,7 +116,7 @@ const AddProduct = () => {
               })}
               className="input input-bordered w-full" />
             <label className="label">
-              {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+              {errors.price?.type === 'required' && <span className="label-text-alt text-red-500">{errors.price.message}</span>}
             </label>
           </div>
           {/* Prdoduct Prices */}
@@ -133,7 +133,7 @@ const AddProduct = () => {
               })}
               className="input input-bordered w-full" />
             <label className="label">
-              {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+              {errors.img?.type === 'required' && <span className="label-text-alt text-red-500">{errors.img.message}</span>}
             </label>
           </div>
           <input className='btn btn-primary w-full text-white' type="submit" value="Add Product" />
