@@ -52,7 +52,7 @@ const MyProfile = () => {
               </div>
             </div>
             <div className="card-body p-5">
-              <h2 className="text-xl font-bold text-center mb-3">{user?.displayName} {userInfo.location}</h2>
+              <h2 className="text-xl font-bold text-center mb-3">{user?.displayName}</h2>
               <div className='mb-1'>
                 <label className='font-semibold mb-2'>Email: {userInfo.location}</label>
                 <p>{email}</p>
