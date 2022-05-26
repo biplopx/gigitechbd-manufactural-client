@@ -23,6 +23,7 @@ import Navbar from "./components/Shared/Navbar";
 import ManageProducts from "./components/Pages/Dashboard/ManageProducts";
 import MyPortolio from "./components/Pages/MyPortfolio/MyPortolio";
 import Products from "./components/Products/Products";
+import Payment from "./components/Pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
           <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="all-users" element={<RequireAdmin><Users></Users></RequireAdmin>}></Route>
           <Route path="add-product" element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
           <Route path="manage-orders" element={<RequireAdmin><ManageOrders></ManageOrders></RequireAdmin>}></Route>

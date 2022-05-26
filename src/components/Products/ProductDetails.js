@@ -11,12 +11,12 @@ import PageTitle from '../Shared/PageTitle';
 const ProductDetails = () => {
   const { id } = useParams();
   const url = `http://localhost:5000/product/${id}`
-  const { data: product, isLoading } = useQuery('product', () => fetch(url)
+  const { data: product, isLoading, refetch } = useQuery('product', () => fetch(url)
     .then(res => res.json()));
 
   const [user, loading] = useAuthState(auth);
 
-  const { register, watch, getValues, refetch, formState: { errors }, handleSubmit, reset } = useForm();
+  const { register, watch, getValues, formState: { errors }, handleSubmit, reset } = useForm();
   // const { isDirty } = useFormState();
   const watchShowQuantity = watch("quantity", product?.minQuantity);
 
@@ -28,6 +28,7 @@ const ProductDetails = () => {
   const onSubmit = data => {
     // console.log(data)
     const order = {
+      productId: product._id,
       productName: product.name,
       name: user.displayName,
       email: user.email,
@@ -51,16 +52,21 @@ const ProductDetails = () => {
         reset()
       })
 
+    const updateProduct = {
+      productId: product._id,
+      quantity: parseInt(data.quantity),
+
+    }
+
     fetch(`http://localhost:5000/product/${product._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(data.quantity)
+      body: JSON.stringify(updateProduct)
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         refetch();
       })
 
