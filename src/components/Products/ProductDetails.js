@@ -190,7 +190,7 @@ const ProductDetails = () => {
                   </label>
                 </div>
                 <div className="form-control w-full mb-4">
-                  <h2 className="xl font-bold">Total Price: $ <span>{(product?.price) * (getValues('quantity') ? getValues('quantity') : product?.minQuantity)}</span></h2>
+                  <h2 className="xl font-bold">Total Price: <span>{(product?.price) * (getValues('quantity') ? getValues('quantity') : product?.minQuantity)}</span>৳</h2>
 
                 </div>
                 <input className='btn btn-primary w-full text-white' type="submit" value="Purchase Now" disabled={watchShowQuantity < product.minQuantity || watchShowQuantity > product.availableQuantity} />
