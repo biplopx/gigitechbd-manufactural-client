@@ -8,8 +8,8 @@ import PageTitle from '../../Shared/PageTitle';
 
 const Dashboard = () => {
   const [user, loading] = useAuthState(auth);
-  const [admin] = useAdmin(user);
-  if (loading) {
+  const [admin, adminLoading] = useAdmin(user);
+  if (loading || adminLoading) {
     return <Loading></Loading>
   }
   return (

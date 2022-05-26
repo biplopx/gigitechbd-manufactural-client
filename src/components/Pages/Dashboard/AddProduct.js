@@ -29,9 +29,9 @@ const AddProduct = () => {
       })
   }
   return (
-    <div className='flex justify-center rounded-md'>
+    <div className='flex justify-center'>
       <div className='w-full lg:w-6/12 md:w-full p-5 border-2 rounded'>
-        <h2 className="text-xl font-bold text-accent mb-3">Add Product</h2>
+        <h2 className="text-2xl text-center font-bold text-accent mb-3">Add Product</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Product Name */}
           <div className="form-control w-full">
