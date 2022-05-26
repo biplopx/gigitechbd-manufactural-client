@@ -12,9 +12,6 @@ const ManageOrders = () => {
     }
   }).then(res => res.json()));
 
-
-
-
   if (isLoading) {
     return <Loading></Loading>
   }
@@ -29,8 +26,9 @@ const ManageOrders = () => {
               <th>Product</th>
               <th>Price</th>
               <th>Quantity</th>
+              <th>User Email</th>
               <th>Shipping Address</th>
-              <th>Payment</th>
+              <th className='text-center'>Payment</th>
               <th>Order Status</th>
               <th>Action</th>
             </tr>

@@ -33,6 +33,7 @@ const MyOrders = () => {
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Payment Status</th>
+                <th>Order Status</th>
                 <th>Action</th>
               </tr>
             </thead>

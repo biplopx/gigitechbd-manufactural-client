@@ -26,7 +26,6 @@ const ProductDetails = () => {
   }
 
   const onSubmit = data => {
-    // console.log(data)
     const order = {
       productId: product._id,
       productName: product.name,
@@ -37,7 +36,6 @@ const ProductDetails = () => {
       quantity: parseInt(data.quantity),
       price: parseInt(product.price * data.quantity),
     }
-    console.log(order)
     fetch('http://localhost:5000/order', {
       method: 'POST',
       headers: {
@@ -166,9 +164,8 @@ const ProductDetails = () => {
                   </label>
                   <input type="number"
                     {...register("quantity",
-                      // { min: product.minQuantity, max: product.availableQuantity },
                       {
-                        // onChange: (e) => { console.log(e) },
+
                         min: {
                           value: product.minQuantity,
                           message: `You have to purchase at least ${product.minQuantity} products`

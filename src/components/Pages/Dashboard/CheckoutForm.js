@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import Loading from '../../Shared/Loading';
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -73,7 +74,9 @@ const CheckoutForm = ({ order }) => {
     else {
       setTransactionId(transactionId);
       setCardError('');
-      console.log(paymentIntent.id);
+      if (processing) {
+        return <Loading></Loading>
+      }
       setSuccess('Your payment is completed');
       // storage payment on database
       const payment = {
@@ -90,7 +93,6 @@ const CheckoutForm = ({ order }) => {
       }).then(res => res.json())
         .then(data => {
           setProcessing(false);
-          console.log(data)
         })
     }
 

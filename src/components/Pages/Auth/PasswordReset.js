@@ -31,7 +31,6 @@ const PasswordReset = () => {
             {resetError}
             <button
               onClick={async () => {
-                console.log(email)
                 if (email) {
                   await sendPasswordResetEmail(email);
                   toast.success('Password reset email send');
