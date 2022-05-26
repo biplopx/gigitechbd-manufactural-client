@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import swal from 'sweetalert';
 import auth from '../../../firebase';
 import Loading from '../../Shared/Loading';
 
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const email = user.email;
-
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const url = `http://localhost:5000/user/${email}`;
 
-  if (loading) {
+  const { data: userInfo, isLoading, refetch } = useQuery('userInfo', () => fetch(url).then(res => res.json()));
+
+  if (loading || isLoading) {
     return <Loading></Loading>
   }
 
@@ -34,8 +35,8 @@ const MyProfile = () => {
     })
       .then(res => res.json())
       .then(result => {
-        toast.success('Profile Update')
-        reset()
+        toast.success('Profile Update');
+        refetch();
       })
   }
   return (
@@ -50,9 +51,28 @@ const MyProfile = () => {
                 <img src={user.photoURL == null ? 'https://api.lorem.space/image/face?hash=92310' : user.photoURL} alt="avatar" />
               </div>
             </div>
-            <div className="card-body text-left items-center">
-              <h2 className="card-title mb-3">{user?.displayName}</h2>
-              <p className="mb-2"><strong>Email:</strong> {user.email}</p>
+            <div className="card-body p-5">
+              <h2 className="text-xl font-bold text-center mb-3">{user?.displayName} {userInfo.location}</h2>
+              <div className='mb-1'>
+                <label className='font-semibold mb-2'>Email: {userInfo.location}</label>
+                <p>{email}</p>
+              </div>
+              <div className='mb-1'>
+                <label className='font-semibold mb-2'>Education:</label>
+                <p>{userInfo.education ? userInfo.education : <span className='text-red-500'>Please update education</span>}</p>
+              </div>
+              <div className='mb-1'>
+                <label className='font-semibold mb-2'>Location:</label>
+                <p>{userInfo.location ? userInfo.location : <span className='text-red-500'>Please update location</span>}</p>
+              </div>
+              <div className='mb-1'>
+                <label className='font-semibold mb-2'>Phone:</label>
+                <p>{userInfo.phone ? userInfo.phone : <span className='text-red-500'>Please update phone number</span>}</p>
+              </div>
+              <div className='mb-1'>
+                <label className='font-semibold mb-2'>Likedin Profile Link:</label>
+                <p>{userInfo.linkedin ? <a className='text-sky-500' href={userInfo.linkedin}>{userInfo.linkedin}</a> : <span className='text-red-500'>Please update linkedin profile link</span>}</p>
+              </div>
             </div>
           </div>
           <hr className='my-3' />
