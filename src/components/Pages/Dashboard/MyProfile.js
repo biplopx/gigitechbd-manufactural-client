@@ -8,7 +8,7 @@ import Loading from '../../Shared/Loading';
 const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const email = user.email;
-  const { register, formState: { errors }, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const url = `http://localhost:5000/user/${email}`;
 
   const { data: userInfo, isLoading, refetch } = useQuery('userInfo', () => fetch(url).then(res => res.json()));
