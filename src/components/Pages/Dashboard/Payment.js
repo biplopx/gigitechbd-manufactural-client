@@ -1,6 +1,9 @@
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import CheckoutForm from './CheckoutForm';
+const stripePromise = loadStripe('pk_test_51L24ZcEGfsX7ZLIktiGwi4xsiJF20m5bkDvvIR98nlrQ7jE4htQpzuroBH881IShXxdDaBYUYvJnUBfANuKcWfbq00T3qXRsHs');
 const Payment = () => {
   const { id } = useParams();
   const [order, setOrder] = useState({});
@@ -31,7 +34,7 @@ const Payment = () => {
             <p><strong className='font-semibold'>Product Name:</strong> {productName}</p>
           </div>
           <div className='my-3 px-2'>
-            <p><strong className='font-semibold'>Price:</strong> {price}</p>
+            <p><strong className='font-semibold'>Price:</strong> {price} BDT</p>
           </div>
           <div className='my-3 px-2'>
             <p><strong className='font-semibold'>Quantity:</strong> {quantity}</p>
@@ -40,36 +43,12 @@ const Payment = () => {
             <p><strong className='font-semibold'>Shipping Address:</strong> {address}</p>
           </div>
         </div>
+        <div>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm order={order} />
+          </Elements>
+        </div>
 
-
-        {/* <div class="overflow-x-auto">
-          <table class="table w-full">
-
-            <thead>
-              <tr>
-                <th colSpan={2}>Order Summary</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th className='text-md font-semibold'>Product Name</th>
-                <td>{productName}</td>
-              </tr>
-              <tr>
-                <th className='text-md font-semibold'>Price</th>
-                <td>{price}</td>
-              </tr>
-              <tr>
-                <th className='text-md font-semibold'>Quantity</th>
-                <td>{quantity}</td>
-              </tr>
-              <tr>
-                <th className='text-md font-semibold'>Shipping Address</th>
-                <td>{address}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div> */}
       </div>
     </div>
   );

@@ -24,11 +24,11 @@ const MyProfile = () => {
       linkedin: data.linkedin,
     }
     console.log(updateProfile)
-    fetch(`http://localhost:5000'/user/update/${email}`, {
+    fetch(`http://localhost:5000/user/update/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
-        // 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+        'authorization': `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify(updateProfile)
     })
