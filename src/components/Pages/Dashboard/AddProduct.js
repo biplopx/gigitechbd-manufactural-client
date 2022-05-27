@@ -14,7 +14,7 @@ const AddProduct = () => {
       availableQuantity: parseInt(data.availableQuantity),
       price: parseFloat(data.price)
     }
-    fetch('http://localhost:5000/product/add', {
+    fetch('https://gigitechbd.herokuapp.com/product/add', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

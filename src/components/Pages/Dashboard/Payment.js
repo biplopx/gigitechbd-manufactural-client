@@ -8,7 +8,7 @@ const Payment = () => {
   const { id } = useParams();
   const [order, setOrder] = useState({});
   const { productName, price, quantity, address } = order;
-  const url = `http://localhost:5000/order/${id}`;
+  const url = `https://gigitechbd.herokuapp.com/order/${id}`;
 
   useEffect(() => {
     fetch(url, {

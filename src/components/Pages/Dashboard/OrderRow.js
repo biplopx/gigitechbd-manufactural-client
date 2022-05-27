@@ -15,7 +15,7 @@ const OrderRow = ({ order, index, refetch }) => {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`http://localhost:5000/order/${_id}`, {
+          fetch(`https://gigitechbd.herokuapp.com/order/${_id}`, {
             method: 'DELETE',
             headers: {
               authorization: `Bearer ${localStorage.getItem('accessToken')}`

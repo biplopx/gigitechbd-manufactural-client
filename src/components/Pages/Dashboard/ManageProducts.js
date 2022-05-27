@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading';
 import MangagePorduct from './MangagePorduct';
 
 const ManageProducts = () => {
-  const { data: products, isLoading, refetch } = useQuery('products', () => fetch('http://localhost:5000/products').then(res => res.json()));
+  const { data: products, isLoading, refetch } = useQuery('products', () => fetch('https://gigitechbd.herokuapp.com/products').then(res => res.json()));
 
   if (isLoading) {
     return <Loading></Loading>

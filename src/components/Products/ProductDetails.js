@@ -9,7 +9,7 @@ import PageTitle from '../Shared/PageTitle';
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const url = `http://localhost:5000/product/${id}`
+  const url = `https://gigitechbd.herokuapp.com/product/${id}`
   const { data: product, isLoading, refetch } = useQuery('product', () => fetch(url)
     .then(res => res.json()));
 
@@ -38,7 +38,7 @@ const ProductDetails = () => {
       quantity: parseInt(data.quantity),
       price: parseInt(product.price * data.quantity),
     }
-    fetch('http://localhost:5000/order', {
+    fetch('https://gigitechbd.herokuapp.com/order', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -57,7 +57,7 @@ const ProductDetails = () => {
 
     }
     // update product quantity
-    fetch(`http://localhost:5000/product/${product._id}`, {
+    fetch(`https://gigitechbd.herokuapp.com/product/${product._id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

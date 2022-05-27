@@ -14,7 +14,7 @@ const UserRow = ({ user, index, refetch }) => {
     })
       .then((willAdmin) => {
         if (willAdmin) {
-          fetch(`http://localhost:5000/user/admin/${email}`, {
+          fetch(`https://gigitechbd.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
               'content-type': 'application/json',

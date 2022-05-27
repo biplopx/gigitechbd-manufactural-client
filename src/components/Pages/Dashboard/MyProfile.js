@@ -9,7 +9,7 @@ const MyProfile = () => {
   const [user, loading] = useAuthState(auth);
   const email = user.email;
   const { register, handleSubmit } = useForm();
-  const url = `http://localhost:5000/user/${email}`;
+  const url = `https://gigitechbd.herokuapp.com/user/${email}`;
 
   const { data: userInfo, isLoading, refetch } = useQuery('userInfo', () => fetch(url).then(res => res.json()));
 
@@ -24,7 +24,7 @@ const MyProfile = () => {
       phone: data.phone,
       linkedin: data.linkedin,
     }
-    fetch(`http://localhost:5000/user/update/${email}`, {
+    fetch(`https://gigitechbd.herokuapp.com/user/update/${email}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
