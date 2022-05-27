@@ -15,7 +15,10 @@ const ProductDetails = () => {
 
   const [user, loading] = useAuthState(auth);
 
-  const { register, watch, getValues, formState: { errors }, handleSubmit, reset } = useForm();
+  const { register, watch, getValues, formState: { errors }, handleSubmit, reset } = useForm({
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+  });
 
   const watchShowQuantity = watch("quantity", product?.minQuantity);
 
@@ -139,12 +142,12 @@ const ProductDetails = () => {
                     {errors.address?.type === 'required' && <span className="label-text-alt text-red-500">{errors.address.message}</span>}
                   </label>
                 </div>
-                {/* address Input */}
+                {/* Phone Input */}
                 <div className="form-control w-full">
                   <label className="label font-semibold">
                     <span className="label-text">Phone</span>
                   </label>
-                  <input type="text"
+                  <input type="number"
                     {...register("phone", {
                       required: {
                         value: true,

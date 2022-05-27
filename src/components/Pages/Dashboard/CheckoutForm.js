@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import Loading from '../../Shared/Loading';
+
 
 const CheckoutForm = ({ order }) => {
   const stripe = useStripe();
@@ -9,7 +9,6 @@ const CheckoutForm = ({ order }) => {
   const [success, setSuccess] = useState();
   const [transactionId, setTransactionId] = useState();
   const [clientSecret, setClientSecret] = useState('');
-  const [processing, setProcessing] = useState(false);
   const { _id, name, email, price } = order;
 
   useEffect(() => {
@@ -53,7 +52,6 @@ const CheckoutForm = ({ order }) => {
 
     setCardError(error?.message || '');
     setSuccess('');
-    setProcessing(true)
     const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
       clientSecret,
       {
@@ -69,15 +67,12 @@ const CheckoutForm = ({ order }) => {
     if (intentError) {
       setCardError(intentError?.message);
       success('');
-      setProcessing(false);
     }
     else {
-      setTransactionId(transactionId);
       setCardError('');
-      if (processing) {
-        return <Loading></Loading>
-      }
       setSuccess('Your payment is completed');
+      setTransactionId(paymentIntent.id);
+      console.log(transactionId);
       // storage payment on database
       const payment = {
         order: _id,
@@ -92,9 +87,10 @@ const CheckoutForm = ({ order }) => {
         body: JSON.stringify(payment)
       }).then(res => res.json())
         .then(data => {
-          setProcessing(false);
+          // 
         })
     }
+
 
   }
   return (
@@ -121,9 +117,9 @@ const CheckoutForm = ({ order }) => {
         </button>
       </form>
       {cardError && <div className='bg-red-500 text-white p-2 rounded-sm text-center'><p>{cardError}</p></div>}
-      {success && <div className='bg-green-500 text-white p-2 rounded-sm text-center'>
+      {success && <div className='boderp-2 p-2 rounded-sm text-center'>
         <p>{success}</p>
-        <p>Your Transaction Id: {transactionId}</p>
+        <p>Your Transaction Id: <span className='text-green-500 font-semibold'>{transactionId}</span></p>
       </div>}
     </div>
   );
