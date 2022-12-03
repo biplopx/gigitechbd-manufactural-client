@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading';
 import Review from './Review';
 
 const Reviews = () => {
-  const { data: reviews, isLoading } = useQuery('reviews', () => fetch('https://gigitechbd.herokuapp.com/reviews')
+  const { data: reviews, isLoading } = useQuery('reviews', () => fetch('https://gigitec-bd.onrender.com/reviews')
     .then(res => res.json()));
 
   if (isLoading) {

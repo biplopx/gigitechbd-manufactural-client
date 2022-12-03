@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
 
   useEffect(() => {
     if (price) {
-      fetch('https://gigitechbd.herokuapp.com/create-payment-intent', {
+      fetch('https://gigitec-bd.onrender.com/create-payment-intent', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -79,7 +79,7 @@ const CheckoutForm = ({ order }) => {
         transactionId: paymentIntent.id
       }
 
-      fetch(`https://gigitechbd.herokuapp.com/order/${_id}`, {
+      fetch(`https://gigitec-bd.onrender.com/order/${_id}`, {
         method: 'PATCH',
         headers: {
           'content-type': 'application/json',

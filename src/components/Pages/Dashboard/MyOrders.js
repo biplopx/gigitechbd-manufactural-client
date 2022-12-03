@@ -8,7 +8,7 @@ import OrderRow from './OrderRow';
 const MyOrders = () => {
   const [user, loading] = useAuthState(auth);
 
-  const url = `https://gigitechbd.herokuapp.com/myorders/${user.email}`;
+  const url = `https://gigitec-bd.onrender.com/myorders/${user.email}`;
 
   const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
     method: 'GET',

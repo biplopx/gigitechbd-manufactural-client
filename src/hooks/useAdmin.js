@@ -6,7 +6,7 @@ const useAdmin = user => {
 
   const email = user?.email;
   if (email) {
-    fetch(`https://gigitechbd.herokuapp.com/admin/${email}`, {
+    fetch(`https://gigitec-bd.onrender.com/admin/${email}`, {
       method: 'GET',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`

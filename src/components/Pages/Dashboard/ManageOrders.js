@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading';
 import ManageOrderRow from './ManageOrderRow';
 
 const ManageOrders = () => {
-  const url = `https://gigitechbd.herokuapp.com/orders/`;
+  const url = `https://gigitec-bd.onrender.com/orders/`;
   const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(url, {
     method: 'GET',
     headers: {

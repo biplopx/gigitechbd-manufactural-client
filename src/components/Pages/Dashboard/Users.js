@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading';
 import UserRow from './UserRow';
 
 const Users = () => {
-  const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://gigitechbd.herokuapp.com/users', {
+  const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://gigitec-bd.onrender.com/users', {
     method: 'GET',
     headers: {
       'authorization': `Bearer ${localStorage.getItem('accessToken')}`

@@ -4,7 +4,7 @@ import Loading from '../Shared/Loading';
 import Product from './Product';
 
 const Products = () => {
-  const { data: products, isLoading } = useQuery('products', () => fetch('https://gigitechbd.herokuapp.com/products')
+  const { data: products, isLoading } = useQuery('products', () => fetch('https://gigitec-bd.onrender.com/products')
     .then(res => res.json()))
   if (isLoading) {
     return <Loading></Loading>

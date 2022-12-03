@@ -10,7 +10,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
     const orderStatus = {
       orderStatus: true
     }
-    fetch(`https://gigitechbd.herokuapp.com/order/status/${_id}`, {
+    fetch(`https://gigitec-bd.onrender.com/order/status/${_id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -34,7 +34,7 @@ const ManageOrderRow = ({ order, index, refetch }) => {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`https://gigitechbd.herokuapp.com/order/${_id}`, {
+          fetch(`https://gigitec-bd.onrender.com/order/${_id}`, {
             method: 'DELETE',
             headers: {
               authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -14,7 +14,7 @@ const MangagePorduct = ({ product, index, refetch }) => {
     })
       .then((willDelete) => {
         if (willDelete) {
-          fetch(`https://gigitechbd.herokuapp.com/product/${_id}`, {
+          fetch(`https://gigitec-bd.onrender.com/product/${_id}`, {
             method: 'DELETE',
             headers: {
               'content-type': 'application/json',

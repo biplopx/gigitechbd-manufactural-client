@@ -21,7 +21,7 @@ const AddReview = () => {
       rating: data.rating,
       userEmail: user?.email
     }
-    fetch('https://gigitechbd.herokuapp.com/review/add', {
+    fetch('https://gigitec-bd.onrender.com/review/add', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
